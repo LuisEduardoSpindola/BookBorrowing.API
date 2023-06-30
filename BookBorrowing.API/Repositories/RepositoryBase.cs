@@ -11,10 +11,10 @@ namespace BookBorrowing.API.Repositories
     {
         private readonly BookBorrowingContext _context;
         private readonly bool _saveChanges;
-
-        public RepositoryBase(BookBorrowingContext context, bool saveChanges)
+        
+        public RepositoryBase(bool saveChanges)
         {
-            _context = context;
+            BookBorrowingContext context = _context;
             _saveChanges = saveChanges;
         }
 
