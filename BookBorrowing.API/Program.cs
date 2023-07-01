@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var connection = builder.Configuration.GetValue<string>("Default");
+var connection = builder.Configuration.GetConnectionString("TrustConnection");
 builder.Services.AddDbContext<BookBorrowingContext>(options => options.UseSqlServer(connection));
 builder.Services.AddControllers();
 

@@ -10,8 +10,11 @@ namespace BookBorrowing.API.Models
 {
     public partial class Client
     {
+        
+
         [Key]
         [Column("idClient")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdClient { get; set; }
         [Required]
         [Column("clientName")]

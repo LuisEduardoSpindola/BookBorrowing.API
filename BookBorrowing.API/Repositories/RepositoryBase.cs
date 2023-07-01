@@ -11,10 +11,10 @@ namespace BookBorrowing.API.Repositories
     {
         private readonly BookBorrowingContext _context;
         private readonly bool _saveChanges;
-        
-        public RepositoryBase(bool saveChanges)
+
+        public RepositoryBase(BookBorrowingContext context, bool saveChanges)
         {
-            BookBorrowingContext context = _context;
+            _context = context;
             _saveChanges = saveChanges;
         }
 
@@ -56,10 +56,9 @@ namespace BookBorrowing.API.Repositories
                 Delete(entity.Result);
         }
 
-        public void SaveChanges()
+        public async Task<bool> SaveChanges()
         {
-            if (_saveChanges)
-                _context.SaveChanges();
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace BookBorrowing.API.Repositories
 {
     public class RepositoryClient : RepositoryBase<Client>, IRepositoryClient
     {
-        public RepositoryClient(bool saveChanges = true) : base(saveChanges)
+        public RepositoryClient(BookBorrowingContext context, bool saveChanges = false) : base(context, saveChanges)
         {
         }
     }

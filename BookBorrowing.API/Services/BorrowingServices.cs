@@ -1,4 +1,5 @@
-﻿using BookBorrowing.API.Repositories;
+﻿using BookBorrowing.API.Models;
+using BookBorrowing.API.Repositories;
 
 namespace BookBorrowing.API.Services
 {
@@ -6,9 +7,9 @@ namespace BookBorrowing.API.Services
     {
         public RepositoryBorrowing _repositoryBorrowing { get; set; }
 
-        public BorrowingServices()
+        public BorrowingServices(BookBorrowingContext context)
         {
-            _repositoryBorrowing = new RepositoryBorrowing();
+            _repositoryBorrowing = new RepositoryBorrowing(context);
         }
     }
 }

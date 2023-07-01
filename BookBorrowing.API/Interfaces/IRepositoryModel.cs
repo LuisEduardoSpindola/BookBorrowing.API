@@ -8,6 +8,6 @@
         void Update(T entity);
         void Delete(T entity);
         void DeleteById(int id);
-        void SaveChanges();
+        Task<bool> SaveChanges();
     }
 }

@@ -5,7 +5,7 @@ namespace BookBorrowing.API.Repositories
 {
     public class RepositoryBook : RepositoryBase<Book>, IRepositoryBook
     {
-        public RepositoryBook(bool saveChanges = true) : base(saveChanges)
+        public RepositoryBook(BookBorrowingContext context, bool saveChanges = true) : base(context, saveChanges)
         {
         }
     }

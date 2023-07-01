@@ -13,12 +13,26 @@ namespace BookBorrowing.API.Controllers
         private readonly IRepositoryClient _repositoryClient;
         private readonly ClientServices _clientServices;
 
-        public ClientController(IRepositoryClient repositoryClient)
+        public ClientController(IRepositoryClient repositoryClient, BookBorrowingContext context)
         {
             _repositoryClient = repositoryClient;
+            _clientServices = new ClientServices(context);
         }
 
-        public async Task<ActionResult<IEnumerable<Client>>> ReadAll() 
+        [HttpPost("Create")]
+        public async Task<ActionResult> Create(Client _client) 
+        {
+            _clientServices._repositoryClient.Create(_client);
+            if(await _clientServices._repositoryClient.SaveChanges())
+            {
+                return Ok("Cliente cadastrado com sucesso!");
+            }
+
+            return BadRequest("Erro: O Cliente não doi salvo :(");
+        }
+
+        [HttpGet("ReadAll")]
+        public async Task<ActionResult<IEnumerable<Client>>> ReadAll()
         {
             return Ok(await _clientServices._repositoryClient.ReadAll());
         }
