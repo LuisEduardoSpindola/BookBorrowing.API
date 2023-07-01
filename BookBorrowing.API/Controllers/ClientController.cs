@@ -36,5 +36,29 @@ namespace BookBorrowing.API.Controllers
         {
             return Ok(await _clientServices._repositoryClient.ReadAll());
         }
+
+        [HttpPut("Update")]
+        public async Task<ActionResult> Update(Client _client)
+        {
+            _clientServices._repositoryClient.Update(_client);
+            if (await _clientServices._repositoryClient.SaveChanges())
+            {
+                return Ok("Cliente alterado com sucesso!");
+            }
+
+            return BadRequest("Erro: O Cliente não foi alterado :(");
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(Client client) 
+        {
+            _clientServices._repositoryClient.Delete(client);
+            if (await _clientServices._repositoryClient.SaveChanges()) 
+            {
+                return Ok("Usuário deletado com sucesso!");
+            }
+
+            return BadRequest("O usuário não foi deletado :(");
+        }
     }
 }
