@@ -1,4 +1,5 @@
 using BookBorrowing.API.Interfaces;
+using BookBorrowing.API.Mappings;
 using BookBorrowing.API.Models;
 using BookBorrowing.API.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositoryClient, RepositoryClient>();
 builder.Services.AddScoped<IRepositoryBook, RepositoryBook>();
 builder.Services.AddScoped<IRepositoryBorrowing, RepositoryBorrowing>();
+builder.Services.AddAutoMapper(typeof(EntitysDTO));
 
 var app = builder.Build();
 
